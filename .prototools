@@ -11,6 +11,7 @@ jq = "1.8.1"
 rust = "stable"
 gitleaks = "latest"
 ruby = "latest"
+openjdk = "~26"
 
 [settings]
 auto-clean = true
