@@ -46,8 +46,11 @@ installed vs. resolved, run `proto status`.
 
    ```fish
    set -gx PROTO_HOME "$HOME/.proto"
-   set -gx PATH "$PROTO_HOME/shims:$PROTO_HOME/bin" $PATH
+   fish_add_path "$PROTO_HOME/shims" "$PROTO_HOME/bin"
    ```
+
+   `fish_add_path` skips directories that don't exist yet and re-runs on every
+   shell start, so `shims/` (created by step 4) is picked up by the next shell.
 
 4. Install everything pinned in `.prototools`:
 
