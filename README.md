@@ -45,7 +45,7 @@ installed vs. resolved, run `proto status`.
 3. Restore the config from this repo, inside `~/.proto`:
 
    ```sh
-   git init && git remote add origin <remote-url> && git fetch && git checkout -f main
+   git init && git remote add origin https://github.com/LRNZ09/dotproto.git && git fetch && git checkout -f main
    ```
 
 4. Install everything pinned in `.prototools`:
@@ -73,5 +73,5 @@ To add a tool proto doesn't know: add its plugin under `[plugins.tools]` in
 ## Backup
 
 Everything in this directory regenerates **except `.prototools` and this README**.
-This directory is a git repo tracking exactly those two files — push it to a private
-remote and a machine loss costs nothing.
+This directory is a git repo tracking exactly those two files, pushed to
+[LRNZ09/dotproto](https://github.com/LRNZ09/dotproto) — a machine loss costs nothing.
