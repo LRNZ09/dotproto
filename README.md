@@ -29,23 +29,24 @@ installed vs. resolved, run `proto status`.
 
 ## Getting started on a new machine
 
-1. Install proto (creates `~/.proto`):
+1. Clone this repo first — it must happen while `~/.proto` doesn't exist yet, since
+   git won't clone into the non-empty directory the installer creates:
+
+   ```sh
+   git clone https://github.com/LRNZ09/dotproto.git ~/.proto
+   ```
+
+2. Install proto into it:
 
    ```sh
    curl -fsSL https://moonrepo.dev/install/proto.sh | bash
    ```
 
-2. Wire it into fish (`~/.config/fish/config.fish`):
+3. Wire it into fish (`~/.config/fish/config.fish`):
 
    ```fish
    set -gx PROTO_HOME "$HOME/.proto"
    set -gx PATH "$PROTO_HOME/shims:$PROTO_HOME/bin" $PATH
-   ```
-
-3. Restore the config from this repo, inside `~/.proto`:
-
-   ```sh
-   git init && git remote add origin https://github.com/LRNZ09/dotproto.git && git fetch && git checkout -f main
    ```
 
 4. Install everything pinned in `.prototools`:
