@@ -60,6 +60,17 @@ installed vs. resolved, run `proto status`.
 
 5. Verify with `proto status`.
 
+### Already have proto installed?
+
+`~/.proto` exists and isn't empty, so a clone won't work — adopt the config in-place
+instead. Inside `~/.proto` (this overwrites the machine's local `.prototools`):
+
+```sh
+git init && git remote add origin https://github.com/LRNZ09/dotproto.git && git fetch && git switch -f main
+```
+
+Then continue from step 4.
+
 ## Daily commands
 
 | Command | Purpose |
