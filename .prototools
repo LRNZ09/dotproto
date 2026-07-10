@@ -1,0 +1,26 @@
+go = "1.24.3"
+node = "lts"
+npm = "bundled"
+bun = "1.2.19"
+deno = "2.5.1"
+yarn = "1.22.22"
+biome = "1.9.4"
+commitlint = "0.10.1"
+gh = "2.85.0"
+jq = "1.8.1"
+rust = "stable"
+gitleaks = "latest"
+ruby = "latest"
+
+[settings]
+auto-clean = true
+auto-install = true
+
+[plugins.tools]
+biome = "https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/biome/plugin.toml"
+commitlint = "https://raw.githubusercontent.com/ageha734/proto-plugins/refs/heads/master/toml/commitlint.toml"
+gh = "https://raw.githubusercontent.com/appthrust/proto-toml-plugins/main/gh/plugin.toml"
+gitleaks = "github://muuvmuuv/proto-plugins/gitleaks_tool"
+jq = "github://muuvmuuv/proto-plugins/jq_tool"
+zig = "github://konomae/zig-plugin"
+openjdk = "github://eplightning/openjdk-adoptium-proto-plugin"
