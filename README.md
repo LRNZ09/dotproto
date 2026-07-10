@@ -71,19 +71,88 @@ git init && git remote add origin https://github.com/LRNZ09/dotproto.git && git 
 
 Then continue from step 4.
 
-## Daily commands
+## Command cheatsheet
+
+Inspect:
 
 | Command | Purpose |
 | --- | --- |
-| `proto status` | List configured tools and their install status |
-| `proto outdated` | Check pinned versions against latest releases |
-| `proto pin <tool> <version> --to global` | Pin globally (default `--to local` writes `./.prototools`) |
+| `proto status` | Every configured tool: pinned vs resolved vs installed |
+| `proto versions <tool>` | Available versions (`--installed` for local ones) |
+| `proto outdated` | Check pins against latest releases (`--update` rewrites the pins) |
+| `proto bin <tool>` | Absolute path of the executable the shim would run |
+| `proto debug config` | Every loaded `.prototools` + the merged result — use when a version resolves unexpectedly |
+
+Install & pin:
+
+| Command | Purpose |
+| --- | --- |
+| `proto install` | Install everything configured in `.prototools` |
 | `proto install <tool> [version]` | Install one tool (rarely needed — auto-install is on) |
+| `proto pin <tool> <version>` | Pin for the current project (`./.prototools`) |
+| `proto pin <tool> <version> --to global` | Pin machine-wide |
+| `proto unpin <tool> [--from <scope>]` | Remove a pin |
+| `proto uninstall <tool> [version]` | Remove installed versions |
+
+Plugins (tools proto doesn't know natively):
+
+| Command | Purpose |
+| --- | --- |
+| `proto plugin search <query>` | Find community plugins |
+| `proto plugin add <id> <locator> --to global` | Register a plugin source |
+| `proto plugin list` / `proto plugin info <id>` | What's registered / details + inventory |
+
+Maintenance:
+
+| Command | Purpose |
+| --- | --- |
 | `proto upgrade` | Upgrade proto itself |
 | `proto clean` | Purge stale tool versions (auto-clean is on) |
+| `proto regen` | Rebuild the shims from scratch |
+| `proto diagnose` | Health-check the proto installation |
 
-To add a tool proto doesn't know: add its plugin under `[plugins.tools]` in
-`.prototools`, pin a version, done.
+### Pin scopes
+
+`--to` picks which `.prototools` a pin lands in. Resolution walks up from the current
+directory (nearest file wins), with the global file always loaded last as the fallback:
+
+| Scope | File | Wins when |
+| --- | --- | --- |
+| `local` (default) | `./.prototools` | inside that project |
+| `user` | `~/.prototools` | anywhere in your home tree, unless a project overrides |
+| `global` | `~/.proto/.prototools` | nothing else pins the tool |
+
+## Worked example: node & openjdk
+
+A language proto knows natively — no plugin needed:
+
+```sh
+proto versions node             # what's out there
+proto install node 24           # install a version, touches no config
+proto pin node lts --to global  # machine-wide default
+
+cd ~/dev/legacy-app
+proto pin node 20               # project override -> ./.prototools
+node --version                  # v20.x in here...
+cd ~ && node --version          # ...the global lts everywhere else
+```
+
+A tool proto doesn't know — third-party plugin first, then the same lifecycle:
+
+```sh
+proto plugin search jdk         # find a community plugin
+proto plugin add openjdk "github://eplightning/openjdk-adoptium-proto-plugin" --to global
+proto pin openjdk 26 --to global  # the plugin alone is NOT enough: no pin, no shims
+proto install openjdk           # installs + registers the java/javac/javadoc shims
+java -version                   # Temurin via ~/.proto/shims/java
+```
+
+Then check the state of the world:
+
+```sh
+proto status                    # pinned vs resolved vs installed, per tool
+proto outdated                  # anything newer? --update rewrites the pins
+```
 
 ## Backup
 
