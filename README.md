@@ -94,6 +94,10 @@ Install & pin:
 | `proto unpin <tool> [--from <scope>]` | Remove a pin |
 | `proto uninstall <tool> [version]` | Remove installed versions |
 
+Gotcha: `proto uninstall` also deletes the tool's pin, so a follow-up `proto install`
+resolves *latest* — and with `pin-latest` enabled, that silently becomes the new pin.
+To reinstall at the pinned version: uninstall → re-pin → install.
+
 Plugins (tools proto doesn't know natively):
 
 | Command | Purpose |
