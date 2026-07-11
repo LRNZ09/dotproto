@@ -1,4 +1,4 @@
-# ~/.proto
+# dotproto
 
 Home directory of [proto](https://moonrepo.dev/proto), the single version manager for
 every toolchain on this machine (node, go, bun, deno, rust, ruby, …).
@@ -128,7 +128,7 @@ A language proto knows natively — no plugin needed:
 
 ```sh
 proto versions node             # what's out there
-proto install node 24           # install a version, touches no config
+proto install node lts          # install a version, touches no config
 proto pin node lts --to global  # machine-wide default
 
 cd ~/dev/legacy-app
