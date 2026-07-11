@@ -1,4 +1,5 @@
 *
 !.gitignore
 !.prototools
+!.protolock
 !README.md

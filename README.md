@@ -156,6 +156,8 @@ proto outdated                  # anything newer? --update rewrites the pins
 
 ## Backup
 
-Everything in this directory regenerates **except `.prototools` and this README**.
-This directory is a git repo tracking exactly those two files, pushed to
+Everything in this directory regenerates **except `.prototools`, `.protolock`, and this
+README**. The lockfile (`unstable-lockfile = true`) records exact resolved versions and
+checksums, but only as tools are freshly downloaded — it fills in over time. This
+directory is a git repo tracking exactly those files, pushed to
 [LRNZ09/dotproto](https://github.com/LRNZ09/dotproto) — a machine loss costs nothing.
