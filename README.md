@@ -102,6 +102,13 @@ Plugins (tools proto doesn't know natively):
 | `proto plugin add <id> <locator> --to global` | Register a plugin source |
 | `proto plugin list` / `proto plugin info <id>` | What's registered / details + inventory |
 
+The locator style is dictated by how each author ships the plugin, not by preference:
+`github://owner/repo[/asset-prefix]` resolves **release assets** (checksummed `.wasm`/
+`.toml` files published on GitHub releases), while plugins that are plain TOML files on
+a branch can only be referenced by their raw URL. Don't "clean up" the mixed styles in
+[`.prototools`](.prototools) — biome, gh, and commitlint publish no release assets, so
+the `github://` form cannot resolve them.
+
 Maintenance:
 
 | Command | Purpose |
