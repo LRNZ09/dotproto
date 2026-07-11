@@ -1,11 +1,6 @@
-biome = "1.9.4"
 bun = "1.2.19"
-commitlint = "0.10.1"
 deno = "2.5.1"
-gh = "2.85.0"
-gitleaks = "8.30.1"
 go = "1.24.3"
-jq = "1.8.1"
 node = "lts"
 npm = "bundled"
 openjdk = "~26"
@@ -23,10 +18,5 @@ telemetry = false
 unstable-lockfile = true
 
 [plugins.tools]
-biome = "https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/biome/plugin.toml"
-commitlint = "https://raw.githubusercontent.com/ageha734/proto-plugins/refs/heads/master/toml/commitlint.toml"
-gh = "https://raw.githubusercontent.com/appthrust/proto-toml-plugins/main/gh/plugin.toml"
-gitleaks = "github://muuvmuuv/proto-plugins/gitleaks_tool"
-jq = "github://muuvmuuv/proto-plugins/jq_tool"
 openjdk = "github://eplightning/openjdk-adoptium-proto-plugin"
 zig = "github://konomae/zig-plugin"

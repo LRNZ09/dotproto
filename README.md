@@ -9,7 +9,7 @@ Every tool command is a **shim**: running `node` actually runs `~/.proto/shims/n
 which resolves the version to use *at call time* — from a `.prototools` file in the
 current directory, then its ancestors, then the global [`.prototools`](.prototools) in
 this directory — and executes that version from `tools/`. Tools proto doesn't support
-natively (biome, gh, jq, zig, openjdk, …) exist only because of third-party plugins
+natively (openjdk, zig, …) exist only because of third-party plugins
 declared under `[plugins.tools]` in `.prototools` — lose that block and those tools
 stop being installable. With `auto-install = true`, a missing version installs itself
 on first use.
@@ -105,9 +105,8 @@ Plugins (tools proto doesn't know natively):
 The locator style is dictated by how each author ships the plugin, not by preference:
 `github://owner/repo[/asset-prefix]` resolves **release assets** (checksummed `.wasm`/
 `.toml` files published on GitHub releases), while plugins that are plain TOML files on
-a branch can only be referenced by their raw URL. Don't "clean up" the mixed styles in
-[`.prototools`](.prototools) — biome, gh, and commitlint publish no release assets, so
-the `github://` form cannot resolve them.
+a branch can only be referenced by their raw URL — don't "clean up" a raw URL into the
+`github://` form, it cannot resolve plugins that publish no release assets.
 
 Maintenance:
 
